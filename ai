@@ -1,0 +1,86 @@
+#!/bin/bash
+
+function display_help() {
+    echo "Usage: ai {x}"
+    echo "  x: Your prompt."
+    echo "Generates a response to your prompt using the Gemini model."
+    echo ""
+    echo "Options:"
+    echo "  --config  Update the current configuration (e.g., API key, model)."
+    echo "  --help    Display this help message."
+    echo "  -c        Continuous chatting, Coming soon..."
+    echo "  -v        Display the version number."
+}
+
+function update_config() {
+    python3 ~/terminal-copilot/setup_config_file.py
+    exit 0
+}
+
+if [ "$1" == "--config" ]; then
+    update_config
+    exit 0
+fi
+
+function display_version() {
+    echo "ai version 1.0"
+    echo "Created by: Syed Sazid Hossain Rezvi"
+    echo "https://github.com/SR-Hossain\n"
+}
+
+if [ "$1" == "-v" ]; then
+    display_version
+    exit 0
+fi
+
+function continuous_chatting() {
+    echo "continuous chatting"
+}
+
+if [ "$1" == "--help" ]; then
+    display_help
+    exit 0
+fi
+
+if [ "$1" == "-c" ]; then
+    continuous_chatting
+    exit 0
+fi
+
+
+
+python3 ~/terminal-copilot/main.py "$1"
+# if python script fails, exit
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+# Full path to the final_command.txt file
+file_path=~/terminal-copilot/final_command.txt
+
+# Check if the file exists
+if [ ! -f "$file_path" ]; then
+    echo "Error: final_command file not found in terminal-copilot: $file_path"
+    exit 1
+fi
+
+# Read the command from the file
+command=$(<"$file_path")
+
+echo "Command to run: $command"
+read -p "Do you want to run this command? (y/n): " run
+
+
+# only run if its y or enter, else exit
+if [ "$run" == "y" ] || [ "$run" == "" ]; then
+    eval $command
+fi
+
+if [ "$run" != "y" ] && [ "$run" != "" ]; then
+    echo "Exiting..."
+    exit 0
+fi
+
+
+
+

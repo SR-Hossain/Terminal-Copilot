@@ -1,0 +1,30 @@
+[
+  {
+    "prompt": "kill a window with mouse",
+    "response": "[{\"command\": \"- xkill\"}]"
+  },
+  {
+    "prompt": "remove folder test",
+    "response": "[{\"command\": \"rm -rf test\"}, {\"command\": \"\nrm -r test\"}, {\"command\": \"\nrmdir test\n\"}]"
+  },
+  {
+    "prompt": "enable snap",
+    "response": "[{\"command\": \"sudo apt update && sudo apt install snapd\"}]"
+  },
+  {
+    "prompt": "make folders- test, test1, test2",
+    "response": "mkdir test test1 test2"
+  },
+  {
+    "prompt": "install opera",
+    "response": "[{\"command\": \"sudo apt update\\nsudo apt install opera -y\"}]"
+  },
+  {
+    "prompt": "reset screen size to full resolution",
+    "response": "[{\"command\": \"xrandr -s 1920x1080\"}]"
+  },
+  {
+    "prompt": "set screen size to custom resolution",
+    "response": "    [{\"command\": \"xrandr --output HDMI1 --mode 1920x1080\"}]"
+  }
+]
