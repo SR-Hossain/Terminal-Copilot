@@ -14,6 +14,8 @@ chmod +x install.sh
 ./install.sh
 ```
 
+get your gemini api key from https://aistudio.google.com/app/apikey
+
 # Set API KEY
 ```bash
 ai --config

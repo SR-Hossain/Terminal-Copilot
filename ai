@@ -4,6 +4,8 @@ function display_help() {
     echo "Usage: ai {x}"
     echo "  x: Your prompt."
     echo "Generates a response to your prompt using the Gemini model."
+    echo "get your gemini api key from https://aistudio.google.com/app/apikey"
+    echo "then run ai --config to set your api key"
     echo ""
     echo "Options:"
     echo "  --config  Update the current configuration (e.g., API key, model)."
@@ -67,8 +69,9 @@ fi
 # Read the command from the file
 command=$(<"$file_path")
 
+echo ""
 echo "Command to run: $command"
-read -p "Do you want to run this command? (y/n): " run
+read -p "Do you want to run this command? (Y/n), (enter to select Y): " run
 
 
 # only run if its y or enter, else exit
