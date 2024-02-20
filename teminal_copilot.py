@@ -50,7 +50,6 @@ Don't provide me with markdown format.
             self.prompt + [f"Previous history: {self.previous_history}"] + [f"new prompt that you have to response to: {new_history}"]).text
         self.previous_history.append(new_history)
         self.save_history(new_history)
-        print(new_history['response'])
         index = 1
         response = json.loads(new_history['response'])
         for command in response:
