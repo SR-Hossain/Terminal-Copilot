@@ -14,11 +14,13 @@ class Gemini:
             self.GOOGLE_API_KEY = config['AI_API_KEY']
             self.MODEL = config['MODEL']
             self.DISTRO = config['DISTRO']
+            self.COUNTRY = config['COUNTRY']
         genai.configure(api_key=self.GOOGLE_API_KEY)
         self.geminiModel = genai.GenerativeModel(self.MODEL)
         self.prompt = [
             f"""
 I am using you in terminal mode in {self.DISTRO}.
+I am from {self.COUNTRY}. so i might use my language but type in english.
 Give me only commands.
 give me commands in json format, for example:
 [
