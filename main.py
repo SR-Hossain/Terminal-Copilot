@@ -1,3 +1,5 @@
-from teminal_copilot import Gemini
+from terminal_copilot import Gemini
+import sys
 
-response = Gemini().generateResponse()
+response = Gemini().generate_response(sys.argv[1:])
+

@@ -9,13 +9,14 @@ function display_help() {
     echo ""
     echo "Options:"
     echo "  --config  Update the current configuration (e.g., API key, model)."
+    echo "  --update  Update the terminal-copilot to the latest version. Use sudo for this command"
     echo "  --help    Display this help message."
     echo "  -c        Continuous chatting, Coming soon..."
     echo "  -v        Display the version number."
 }
 
 function update_config() {
-    python3 ~/terminal-copilot/setup_config_file.py
+    python3 $HOME/terminal-copilot/setup_config_file.py
     exit 0
 }
 
@@ -23,6 +24,30 @@ if [ "$1" == "--config" ]; then
     update_config
     exit 0
 fi
+
+
+function update_terminal_copilot() {
+    echo "Updating terminal-copilot..."
+    rm -r $HOME/Terminal-Copilot
+    cd $HOME
+    git clone https://github.com/SR-Hossain/Terminal-Copilot.git
+    cp $HOME/terminal-copilot/history.json $HOME/Terminal-Copilot/
+    cp $HOME/terminal-copilot/config $HOME/Terminal-Copilot/
+    rm -r $HOME/terminal-copilot
+    mkdir $HOME/terminal-copilot
+    cp $HOME/Terminal-Copilot/* $HOME/terminal-copilot
+    cd $HOME/terminal-copilot
+    sudo chmod +x ai
+    sudo cp ai /usr/bin
+    echo "terminal-copilot updated successfully."
+    exit 0
+}
+
+if [ "$1" == "--update" ]; then
+    update_terminal_copilot
+    exit 0
+fi
+
 
 function display_version() {
     echo "ai version 1.0"
@@ -51,14 +76,16 @@ fi
 
 
 
-python3 ~/terminal-copilot/main.py "$1"
+
+python3 $HOME/terminal-copilot/main.py "$@"
 # if python script fails, exit
 if [ $? -ne 0 ]; then
     exit 1
 fi
 
+
 # Full path to the final_command.txt file
-file_path=~/terminal-copilot/final_command.txt
+file_path=$HOME/terminal-copilot/final_command.txt
 
 # Check if the file exists
 if [ ! -f "$file_path" ]; then
