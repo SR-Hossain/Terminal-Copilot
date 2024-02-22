@@ -2,14 +2,9 @@ Get API key from Gemini and set it in the `config` file or do it after the insta
 
 
 ```bash
-# git clone
 git clone https://github.com/SR-Hossain/Terminal-Copilot.git
 cd Terminal-Copilot
-
-# Install the dependencies
 pip install -r requirements.txt
-
-# Run the program
 chmod +x install.sh
 ./install.sh
 ```
@@ -29,4 +24,9 @@ ai --help
 # run the program
 ```bash
 ai
+```
+
+# update the program to the latest version
+```bash
+ai --update
 ```

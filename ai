@@ -9,7 +9,7 @@ function display_help() {
     echo ""
     echo "Options:"
     echo "  --config  Update the current configuration (e.g., API key, model)."
-    echo "  --update  Update the terminal-copilot to the latest version. Use sudo for this command"
+    echo "  --update  Update the terminal-copilot to the latest version."
     echo "  --help    Display this help message."
     echo "  -c        Continuous chatting, Coming soon..."
     echo "  -v        Display the version number."

@@ -4,3 +4,4 @@ __pycache__
 *.pyo
 workspace.xml
 .idea
+.idea/*
