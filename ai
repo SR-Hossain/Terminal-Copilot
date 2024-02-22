@@ -28,15 +28,16 @@ fi
 
 function update_terminal_copilot() {
     echo "Updating terminal-copilot..."
-    rm -r $HOME/Terminal-Copilot
+    sudo rm -r $HOME/Terminal-Copilot
     cd $HOME
     git clone https://github.com/SR-Hossain/Terminal-Copilot.git
     cp $HOME/terminal-copilot/history.json $HOME/Terminal-Copilot/
     cp $HOME/terminal-copilot/config $HOME/Terminal-Copilot/
-    rm -r $HOME/terminal-copilot
+    sudo rm -r $HOME/terminal-copilot
     mkdir $HOME/terminal-copilot
     cp $HOME/Terminal-Copilot/* $HOME/terminal-copilot
     cd $HOME/terminal-copilot
+    sudo chmod +x final_command.txt
     sudo chmod +x ai
     sudo cp ai /usr/bin
     echo "terminal-copilot updated successfully."
@@ -93,24 +94,9 @@ if [ ! -f "$file_path" ]; then
     exit 1
 fi
 
-# Read the command from the file
-command=$(<"$file_path")
+echo ""
+
+python3 $HOME/terminal-copilot/copy_command.py
 
 echo ""
-echo "Command to run: $command"
-read -p "Do you want to run this command? (Y/n), (enter to select Y): " run
-
-
-# only run if its y or enter, else exit
-if [ "$run" == "y" ] || [ "$run" == "" ]; then
-    eval $command
-fi
-
-if [ "$run" != "y" ] && [ "$run" != "" ]; then
-    echo "Exiting..."
-    exit 0
-fi
-
-
-
-
+echo "Command copied to clipboard. Paste it in the terminal to execute."
