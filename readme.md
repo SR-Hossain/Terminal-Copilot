@@ -26,6 +26,11 @@ ai --help
 ai
 ```
 
+# If you face issues with pyperclip, run this if you use debian based linux
+```bash
+sudo apt-get install xclip
+```
+
 # update the program to the latest version
 ```bash
 ai --update
