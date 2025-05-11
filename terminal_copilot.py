@@ -52,7 +52,7 @@ Don't provide me with markdown format.
             new_history['prompt'] = input('prompt: ')
         new_history['response'] = self.geminiModel.generate_content(
             self.prompt + [f"Previous history: {self.previous_history}"] + [
-                f"new prompt that you have to response to: {new_history}"]).text
+                f"new prompt that you have to response to: {new_history}"]).text.strip().removeprefix('```json').removesuffix('```').strip()
         self.previous_history.append(new_history)
         self.save_history(new_history)
         index = 1
